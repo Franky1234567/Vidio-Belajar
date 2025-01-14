@@ -2,7 +2,7 @@
 import thumbnail from '../assets/thumbnail.jpeg';
 import thumbnail2 from '../assets/thumbnail2.jpg';
 import gamer from '../assets/gamer.png'
-import Rating from '../assets/rating.png'
+import Rating from '../assets/Rating.png'
 const CardData = [
   {
     id: 1,
