@@ -32,7 +32,7 @@ const Logo = ({ avatar = '', textMenu = '' }) => {
 
   return (
     <nav className="w-full px-4 py-5 bg-white">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-[1170px] ">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img src={logo} alt="Logo" className="h-auto w-auto md:h-8 lg:h-10" />

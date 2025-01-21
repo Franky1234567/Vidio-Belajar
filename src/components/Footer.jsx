@@ -33,8 +33,8 @@ const Footer = () => {
 
   return (
     <>
-      <div className="w-full px-2 py-2">
-        <div className="container mx-auto">
+      <div className="w-full px-2 py-2 bg-white">
+        <div className="container mx-auto max-w-[1170px] ">
           <div>
             <img src={logo} />
           </div>
@@ -104,7 +104,7 @@ const Footer = () => {
           </div>
           <div className="w-full flex sm:justify-between flex-col py-5 sm:flex-row">
                 <div >
-                    <h1 className="text-lg text-left">
+                    <h1 className="text-lg text-left pl-5">
                         &copy;2023 Gerobak Sayur All Rights Reserved
                     </h1>
                 </div>

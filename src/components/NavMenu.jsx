@@ -10,7 +10,7 @@ const NavMenu = () => {
     ];
 
     return (
-        <nav className="w-full px-5 bg-yellow-100 h-auto  ">
+        <nav className="w-full px-5  h-auto max-w-[1170px] mx-auto  ">
             <div className="container mx-auto  md:pb-10">
                 <div className="w-full h-auto flex mx-auto">
 

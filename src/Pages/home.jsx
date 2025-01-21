@@ -1,4 +1,4 @@
-import Logo from "../components/Logo";
+// import Logo from "../components/Logo";
 import Banner from "../components/Banner";
 import Headingtext from "../components/HeadingText";
 import NavMenu from "../components/NavMenu";
@@ -11,7 +11,7 @@ const HomePage =()=>{
 
         <>
             <main>
-                <Logo textMenu="ketagory" avatar="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"/>
+                {/* <Logo textMenu="ketagory" avatar="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"/> */}
                 <div>
                     
                     <Banner judul="REVOLUSI PEMBELAJARAN: TEMUKAN ILMU BARU MELALUI PLATFORM VIDIO INTERAKTIF!" paragf="Temukan ilmu baru yang menarik dan mendalam melalui koleksi video pembelajaran berkualitas tinggi. Tidak hanya itu, Anda juga dapat berpartisipasi dalam latihan interaktif yang akan meningkatkan pemahaman Anda." ButtonText="Temukan Vidio Course Untuk Dipelajari!"/>

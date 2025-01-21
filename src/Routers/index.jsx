@@ -5,6 +5,7 @@ import HomePage from "../Pages/home";
 import Pemasaran from "../Pages/Pemasaran";
 import ErorPage from "../components/ErorrPage";
 import RootLayout from "../Layouts/RootLayout";
+import Detail from "../Pages/detail";
 // export const router = createBrowserRouter([
 //     {
 //         path: "/",
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
     },
     { path: "/pemasaran", 
         element: <Pemasaran /> 
+    },
+    {
+      path: "/detail/:id",
+      element: <Detail/>
     },
     ],
   },

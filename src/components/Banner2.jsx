@@ -5,7 +5,8 @@ import Button from './Button';
 
 const BannerWithSubscribe = ({ judul, paragf, inputPlaceholder, subscribeText }) => {
   return (
-    <div className="w-full px-4 py-2 bg-yellow-100 h-auto">
+    // bikin maxwidth 
+    <div className="w-full px-4 py-2  h-auto max-w-[1170px] mx-auto "> 
       <div className="container mx-auto bg-cover bg-center h-auto relative md:h-96" style={{ backgroundImage: `url(${studyingImage})` }}>
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-55"></div>
         <div className="relative z-10 flex flex-col justify-center items-center h-full px-5 py-5">

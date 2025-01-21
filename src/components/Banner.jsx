@@ -5,7 +5,7 @@ import studyingImage from "../assets/studying.jpg";
 const Banner = ({ judul, paragf, ButtonText }) => {
   return (
     <>
-      <div className="w-full px-4 py-2 bg-yellow-100 h-auto ">
+      <div className="w-full px-4 py-2 h-auto max-w-[1170px] mx-auto ">
         <div
           className="container mx-auto bg-cover bg-center h-auto relative md:h-96"
           style={{ backgroundImage: `url(${studyingImage})` }}>
