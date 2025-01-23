@@ -5,8 +5,8 @@ const Profile = () => {
         <>
             <div className="max-w-[1170px] mx-auto w-full p-3 ">
                 <CardSideSaya />
-                <Footer />
             </div>
+            <Footer />
         </>
     )
 };
