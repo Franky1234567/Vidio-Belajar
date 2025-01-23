@@ -2,12 +2,13 @@
 import PropTypes from 'prop-types';
 import logo from '../assets/Logo.png';
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Logo = ({ avatar = '', textMenu = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   // Handle click outside to close dropdown
   useEffect(() => {
@@ -23,11 +24,17 @@ const Logo = ({ avatar = '', textMenu = '' }) => {
     };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('datauser');
+     // Hapus data dari Local Storage
+    navigate('/'); // Arahkan pengguna ke halaman utama
+  };
+
   const menuItems = [
-    { label: 'Profile', path: '/profile' },
+    { label: 'Profile', path: '/Profile' },
     { label: 'Kelas Saya', path: '/my-classes' },
     { label: 'Pesanan Saya', path: '/my-orders' },
-    { label: 'Logout', path: '/logout' }
+    { label: 'Logout', action: handleLogout },
   ];
 
   return (
@@ -82,7 +89,10 @@ const Logo = ({ avatar = '', textMenu = '' }) => {
                       key={index}
                       to={item.path}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      onClick={() => setIsDropdownOpen(false)}
+                      onClick={() =>{ 
+                      setIsDropdownOpen(false);
+                      if (item.action) item.action();
+                      }}
                     >
                       {item.label}
                     </Link>
@@ -115,7 +125,10 @@ const Logo = ({ avatar = '', textMenu = '' }) => {
                   key={index}
                   to={item.path}
                   className="py-3 px-2 border-b border-gray-200 text-sm text-gray-700 hover:bg-gray-50"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() =>{ 
+                      setIsDropdownOpen(false);
+                      if (item.action) item.action();
+                      }}
                 >
                   {item.label}
                 </Link>

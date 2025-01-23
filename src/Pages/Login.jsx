@@ -27,6 +27,7 @@ const LoginForm = () => {
     e.preventDefault();
     if(formData.email && formData.password) {
       console.log(formData);
+      localStorage.setItem("datauser", JSON.stringify(formData));
       navigate('/home')
     }else{
       alert('Please enter your email address and password');
@@ -55,13 +56,13 @@ const LoginForm = () => {
           value={formData.password}
           onChange={handleChange}
         />
+        <p className="text-right mt-3">
+          <a>Lupa password</a>
+        </p>
+        <Button type="submit" color="green" onClick={handleSubmit}>
+          Masuk
+        </Button>
       </form>
-      <p className="text-right mt-3">
-        <a>Lupa password</a>
-      </p>
-      <Button type="submit" color="green" onClick={handleSubmit}>
-        Masuk
-      </Button>
       <Button type="submit" onClick={handleDaftar}>
       Daftar
       </Button>

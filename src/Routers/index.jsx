@@ -6,6 +6,7 @@ import Pemasaran from "../Pages/Pemasaran";
 import ErorPage from "../components/ErorrPage";
 import RootLayout from "../Layouts/RootLayout";
 import Detail from "../Pages/detail";
+import Profile from "../Pages/Profile";
 // export const router = createBrowserRouter([
 //     {
 //         path: "/",
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
     {
       path: "/detail/:id",
       element: <Detail/>
+    },
+    {
+      path: "/profile",
+      element: <Profile/>
     },
     ],
   },
