@@ -33,7 +33,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="w-full px-2 py-2 bg-white">
+      <div className="w-full px-2 py-2 bg-white ">
         <div className="container mx-auto max-w-[1170px] ">
           <div>
             <img src={logo} />

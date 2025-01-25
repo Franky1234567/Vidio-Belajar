@@ -30,12 +30,10 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add validation here
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords tidak sama!");
       return;
     }
-    // Handle register logic here
     console.log("Register data:", formData);
   };
 

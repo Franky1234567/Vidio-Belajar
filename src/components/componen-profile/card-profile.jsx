@@ -5,6 +5,9 @@ const CardProfile = () => {
     const [formdata, setFormData] = useState({
         name: "",
         email: "",
+        phone: "",
+        password: "",
+        tel: "",
         
     });
 
@@ -27,7 +30,7 @@ const CardProfile = () => {
 
     const handleSaveProfile = () => {
         setFormData(tempFormData);
-        localStorage.setItem("formdata", JSON.stringify(tempFormData));
+        localStorage.setItem("datauser", JSON.stringify(tempFormData));
         alert("Data diperbarui");
     };
 
@@ -70,3 +73,4 @@ const CardProfile = () => {
 };
 
 export default CardProfile;
+

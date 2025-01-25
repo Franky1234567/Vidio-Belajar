@@ -112,7 +112,7 @@ const CardData = [
     Ulasan : 4.6,
     price: '300k'
   },
-  // Tambahkan data card lainnya jika perlu
+  
 ];
 
 export default CardData;

@@ -26,8 +26,7 @@ const Logo = ({ avatar = '', textMenu = '' }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('datauser');
-     // Hapus data dari Local Storage
-    navigate('/'); // Arahkan pengguna ke halaman utama
+    navigate('/'); 
   };
 
   const menuItems = [

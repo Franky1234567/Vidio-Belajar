@@ -52,7 +52,7 @@ const Card = ({id, Title,thumbnail,deskripsi,avatar,name,job,Rating,Ulasan,price
 };
 
 Card.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // Add this new prop type
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, 
   Title: PropTypes.string.isRequired,
   deskripsi: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
