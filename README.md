@@ -1,5 +1,7 @@
 # React + Vite
 
+Status : Ongoing
+
 Link Deploy : https://vidio-belajar.vercel.app/ 
 
 /
