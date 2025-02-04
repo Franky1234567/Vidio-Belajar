@@ -33,6 +33,7 @@ const CardProfile = () => {
         }
     }, []);
 
+    
     useEffect(() => {
         return () => {
             if (gambarprofile && gambarprofile.startsWith('blob:')) {
