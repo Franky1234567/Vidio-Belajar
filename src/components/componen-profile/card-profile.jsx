@@ -33,7 +33,6 @@ const CardProfile = () => {
         }
     }, []);
 
-    // Cleanup URL object ketika component unmount
     useEffect(() => {
         return () => {
             if (gambarprofile && gambarprofile.startsWith('blob:')) {
