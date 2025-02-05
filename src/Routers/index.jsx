@@ -7,6 +7,7 @@ import ErorPage from "../components/ErorrPage";
 import RootLayout from "../Layouts/RootLayout";
 import Detail from "../Pages/detail";
 import Profile from "../Pages/Profile";
+import BayarMetode from "../Pages/MetodePembayaran";
 // export const router = createBrowserRouter([
 //     {
 //         path: "/",
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
     {
       path: "/profile",
       element: <Profile/>
+    },
+    {
+      path: "/metodepembayaran",
+      element: <BayarMetode/>
     },
     ],
   },

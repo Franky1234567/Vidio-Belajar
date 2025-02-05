@@ -36,13 +36,15 @@ const Card = ({id, title,thumbnail,job,description,name,Rating,Ulasan,price,}) =
             </div>
             <div className="flex gap-3 px-4 justify-between">
                 <div className="w-14 pt-4">
-                    <p className="">{Rating}</p>
+                    
+                    <img src="https://www.pngmart.com/files/7/Rating-Star-PNG-Background-Image.png" alt={name} className="rounded  mt-2" />
                 </div>
                 <div className="pt-4">
-                    <p className="underline">{Ulasan}</p>
+                    <p className="underline">{Rating}({Ulasan})</p>
+                    <p className=""></p>
                 </div>
                 <div className="pt-4">
-                    <h3 className="text-green-600 font-bold underline">{price}</h3>
+                    <h3 className="text-green-600 font-bold">{price}</h3>
                 </div>
             </div>
             </Link>
@@ -56,7 +58,7 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   avatar: PropTypes.string,
-  name: PropTypes.stringg,
+  name: PropTypes.func,
   job: PropTypes.string,
   Rating: PropTypes.number.isRequired,
   Ulasan: PropTypes.number.isRequired,

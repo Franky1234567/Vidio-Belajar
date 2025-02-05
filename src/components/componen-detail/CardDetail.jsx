@@ -1,8 +1,5 @@
-// import CardData from "../CardData";
-import { useParams } from "react-router";
+import {   useNavigate, useParams } from "react-router";
 import Card from "../CardComponent";
-// import CardList from "../../Layouts/Card";
-// import axios from "axios";
 import { fetchServicesProduct } from "../../Services/ServicesProduct";
 import { useEffect, useState } from "react";
 import { CiStickyNote } from "react-icons/ci";
@@ -12,8 +9,15 @@ import { CiVideoOn } from "react-icons/ci";
 import { TbFileCertificate } from "react-icons/tb";
 import { IoIosArrowDown } from "react-icons/io";
 import { CiTimer } from "react-icons/ci";
+import { useDispatch } from 'react-redux';
+import {setSelectedProduct} from "../../Redux/Product";
+import { nextStep } from "../../Redux/progresbarslice";
+
+
 
 const Carddetail = () => {
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
   const { id } = useParams();
   const [carddetail, setCarddetail] = useState(null);
   const [Isopen, setIsopen] = useState(false);
@@ -33,16 +37,17 @@ const Carddetail = () => {
 
   const card = carddetail;
 
-  // const reviewss = card.reviewss?.map((review) =>{
-  //     return{
-  //         rating: review.rating,
-  //         reviewname: review.reviewerName,
-  //     }
 
   const handleDropDown = () => {
     setIsopen(!Isopen);
     // alert("sudah jalan")
   };
+
+  const handleBeliSekarang = () => {
+    dispatch(nextStep())
+    dispatch(setSelectedProduct(card));
+    Navigate("/metodepembayaran");
+  }
 
   return (
     <div className="w-full px-4 py-2  h-auto max-w-[1170px] mx-auto">
@@ -50,7 +55,7 @@ const Carddetail = () => {
         <div className="md:w-1/4 bg-white p-4 shadow-xl rounded-lg h-auto md:h-1/3 border">
           <h1 className="font-bold text-2xl ">{card.title}</h1>
           <div className="flex md:flex-col lg:flex-row mx-auto justify-between my-4">
-            <p className="text-green-500 font-bold text-xl">Rp {card.price}</p>
+            <p className="text-green-500 font-bold text-xl">Rp {card.price} <span className="text-gray-300 line-through text-lg ">500k</span></p>
             <span className="bg-orange-400 text-white text-xs py-1 px-2 my-1 w-auto rounded-lg">
               Discount 10%
             </span>
@@ -58,7 +63,7 @@ const Carddetail = () => {
           <p className="text-blue-600 font-semibold text-xs">
             Penawaran Spesial Tersisa 2 hari lagi!
           </p>
-          <button className="bg-green-600 hover:bg-green-800 text-white font-semibold py-2 px-4 my-4 w-full rounded-lg">
+          <button onClick={handleBeliSekarang} className="bg-green-600 hover:bg-green-800 text-white font-semibold py-2 px-4 my-4 w-full rounded-lg">
             Beli Sekarang
           </button>
           <p className="text-left text-sm font-medium">
@@ -84,7 +89,6 @@ const Carddetail = () => {
                 <CiVideoOn className="my-auto" />
                 <p>49 Vidio</p>
               </div>
-
               <div className="flex h-auto my-auto w-auto gap-2 mx-auto p-1">
                 <TbFileCertificate className="my-auto" />
                 <p>Sertifikat</p>
@@ -181,10 +185,10 @@ const Carddetail = () => {
                       The basics of user experience design{" "}
                     </h1>
                     <div className=" flex justify-center gap-3 mt-4 ">
-                      <CiVideoOn className="mt-1 hidden md:block" />{" "}
-                      <span className="mt-1 hidden md:block">Vidio</span>
-                      <CiTimer className="mt-1 hidden md:block" />{" "}
-                      <span className="mt-1 hidden md:block">12 Menit</span>
+                      <CiVideoOn className="mt-1 hidden md:block" />
+                      <span className=" hidden md:block">Vidio</span>
+                      <CiTimer className="mt-1 hidden md:block" />
+                      <span className=" hidden md:block">12 Menit</span>
                     </div>
                   </div>
                   <div className="bg-white p-5 border rounded-lg flex justify-between my-2">
@@ -192,33 +196,33 @@ const Carddetail = () => {
                       The basics of user experience design{" "}
                     </h1>
                     <div className=" flex justify-center gap-3 mt-4 ">
-                      <CiVideoOn className="mt-1 hidden md:block" />{" "}
-                      <span className="mt-1 hidden md:block">Vidio</span>
-                      <CiTimer className="mt-1 hidden md:block" />{" "}
-                      <span className="mt-1 hidden md:block">12 Menit</span>
+                      <CiVideoOn className="mt-1 hidden md:block" />
+                      <span className=" hidden md:block">Vidio</span>
+                      <CiTimer className="mt-1 hidden md:block" />
+                      <span className=" hidden md:block">12 Menit</span>
                     </div>
                   </div>
                   <div className="bg-white p-5 border rounded-lg flex justify-between my-2">
                     <h1 className="text-left text-md font-semibold p-5">
-                      The basics of user experience design{" "}
+                      The basics of user experience design
                     </h1>
                     <div className=" flex justify-center gap-3 mt-4 ">
-                      <CiVideoOn className="mt-1 hidden md:block" />{" "}
-                      <span className="mt-1 hidden md:block">Vidio</span>
-                      <CiTimer className="mt-1 hidden md:block" />{" "}
-                      <span className="mt-1 hidden md:block">12 Menit</span>
+                      <CiVideoOn className="mt-1 hidden md:block" />
+                      <span className=" hidden md:block">Vidio</span>
+                      <CiTimer className="mt-1 hidden md:block" />
+                      <span className=" hidden md:block">12 Menit</span>
                     </div>
                   </div>
                 </>
               )}
               <h1 className="text-green-500 font-bold text-xl text-left p-5 flex justify-between">
-                Universal design, inclusive design, and equity-focused design{" "}
+                Universal design, inclusive design, and equity-focused design
                 <span className="flex ">
                   <IoIosArrowDown />
                 </span>
               </h1>
               <h1 className="text-green-500 font-bold text-xl text-left p-5 flex justify-between">
-                Introduction to design sprints{" "}
+                Introduction to design sprints
                 <span className="flex ">
                   <IoIosArrowDown />
                 </span>
@@ -257,19 +261,14 @@ const Carddetail = () => {
                   </div>
                 </div>
                 <div>
-                  {/* <p className="text-left my-4">
-                        Berkarier di bidang HR selama lebih dari 3 tahun. Saat ini bekerja
-                        sebagai Senior Talent Acquisition Specialist di Wings Group Indonesia
-                        (Sayap Mas Utama) selama hampir 1 tahun.
-                        </p> */}
                 </div>
                 {/* Menambahkan komentar di bawah */}
                 {card.reviews && card.reviews.length > 0 && (
                   <p className="text-left my-4">{card.reviews[0]?.comment}</p>
                 )}
-                <div className="flex justify-around">
-                  <h1 className="underline">{card.rating}</h1>
-                  <h1 className="underline">{card.reviews.length}</h1>
+                <div className="flex justify-between">
+                  <img src="https://png.pngtree.com/png-clipart/20220911/original/pngtree-rating-stars-3d-icon-png-image_8540913.png" alt="" className="h-16 my-auto" />
+                  <h1 className="my-auto underline"> {card.reviews.length}</h1>
                 </div>
               </div>
 
@@ -292,32 +291,28 @@ const Carddetail = () => {
                   </div>
                 </div>
                 <div>
-                  {/* <p className="text-left my-4">
-                        Berkarier di bidang HR selama lebih dari 3 tahun. Saat ini bekerja
-                        sebagai Senior Talent Acquisition Specialist di Wings Group Indonesia
-                        (Sayap Mas Utama) selama hampir 1 tahun.
-                        </p> */}
                 </div>
                 {/* Menambahkan komentar di bawah */}
                 {card.reviews && card.reviews.length > 1 && (
                   <p className="text-left my-4">{card.reviews[1]?.comment}</p>
                 )}
-                <div className="flex justify-around">
-                  <h1 className="underline">{card.rating}</h1>
-                  <h1 className="underline">{card.reviews.length}</h1>
+                <div className="flex justify-between">
+                  {/* <h1 className="">Rating : {card.rating}</h1> */}
+                  <img src="https://png.pngtree.com/png-clipart/20220911/original/pngtree-rating-stars-3d-icon-png-image_8540913.png" alt="" className="h-16 my-auto" />
+                  <h1 className="my-auto underline"> {card.reviews.length}</h1>
                 </div>
               </div>
             </div>
           </div>
           {/* akhir */}
-          <div className="bg-white border mb-4">
+          <div className="bg-white border mb-4 shadow-lg">
             <h1 className="text-left font-semibold px-5 pt-4 text-xl">
               Vidio pembelajaran Lainnya
             </h1>
             <p className="text-left px-5">
               Ekspansi Pengetahuan Anda dengan Rekomendasi Spesial Kami!
             </p>
-            <div className="bg-red">
+            <div className="">
                 <div className="flex flex-row items-center justify-center flex-wrap gap-5 py-5">
                     {/* Menampilkan 3 produk pertama dari produk yang ada */}
                     {allcards.slice(0, 2).map((data) => (
