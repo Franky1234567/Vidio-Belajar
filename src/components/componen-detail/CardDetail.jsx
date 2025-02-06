@@ -55,12 +55,12 @@ const Carddetail = () => {
         <div className="md:w-1/4 bg-white p-4 shadow-xl rounded-lg h-auto md:h-1/3 border">
           <h1 className="font-bold text-2xl ">{card.title}</h1>
           <div className="flex md:flex-col lg:flex-row mx-auto justify-between my-4">
-            <p className="text-green-500 font-bold text-xl">Rp {card.price} <span className="text-gray-300 line-through text-lg ">500k</span></p>
+            <p className="text-green-500 font-bold text-xl">Rp{card.price} <span className="text-gray-300 line-through text-lg ">500k</span></p>
             <span className="bg-orange-400 text-white text-xs py-1 px-2 my-1 w-auto rounded-lg">
               Discount 10%
             </span>
           </div>
-          <p className="text-blue-600 font-semibold text-xs">
+          <p className="text-blue-600 font-semibold text-xs text-left">
             Penawaran Spesial Tersisa 2 hari lagi!
           </p>
           <button onClick={handleBeliSekarang} className="bg-green-600 hover:bg-green-800 text-white font-semibold py-2 px-4 my-4 w-full rounded-lg">

@@ -7,9 +7,9 @@ import { SlNote } from "react-icons/sl";
 import { CiVideoOn } from "react-icons/ci";
 import { TbFileCertificate } from "react-icons/tb";
 import { IoIosArrowDown } from "react-icons/io";
-// import { Navigate } from "react-router";
+import { useNavigate } from "react-router";
 import { nextStep } from "../../Redux/progresbarslice";
-
+import Progresbar from "./ProgresBar";
 
 
 const Bayarmethod = () =>{
@@ -20,8 +20,9 @@ const Bayarmethod = () =>{
     const [ewallet, setewallet] =useState(null);
     const [visa, setvisa] = useState(null);
     const dispatch = useDispatch();
+    const Navigate = useNavigate();
     const selectedProduct = useSelector((state) => state.product.selectedProduct);
-    const step = useSelector((state) => state.progresbar.step);
+    // const step = useSelector((state) => state.progresbar.step);
     if (!selectedProduct) {
         return <div>Produk tidak ditemukan.</div>; 
     }
@@ -67,51 +68,20 @@ const Bayarmethod = () =>{
     const productPrice = selectedProduct.price; 
     const total = productPrice + adminFee;
     
-    const handlebayarsekarang = () =>{
+    const handleBelisekarang = () =>{
         if (selectedbank === null && ewallet === null && visa === null) {
             alert("Pilih Bank Terlebih dahulu");
         }
         else{
-            alert("Pembayaran Berhasil");
+            // alert("Pembayaran Berhasil");
             dispatch(nextStep())
-            // Navigate("/finalbayar");
+            Navigate("/Bayar");
         }
     };
 
     return(
         <>
-            <div className="w-full flex items-center justify-between mb-6 max-w-[1170px] mx-auto mt-6">
-                    <div className={`flex items-center justify-center w-1/3`}>
-                        <div className={`w-6 h-6 rounded-full border-2 ${step >= 1 ? 'bg-green-500' : 'bg-gray-300'} text-white flex items-center justify-center`}>
-                            1
-                        </div>
-                        <p className={`my-auto ml-2 ${step >= 1 ? 'text-green-500' : 'text-gray-300'}`}>pilih metode</p>
-                        {/* <div className={`h-1 w-24 ${step >= 1 ? 'bg-green-500' : 'bg-gray-300'}`}></div> */}
-                        
-                    </div>
-
-                    {/* Step 2 */}
-                    <div className={`flex items-center justify-center w-1/3`}>
-                        <div className={`h-1 w-2 md:w-16 ${step >= 2 ? 'bg-green-500' : 'bg-gray-300'}`}></div>
-                        <div className={`w-6 h-6 rounded-full border-2 ${step >= 2 ? 'bg-green-500' : 'bg-gray-300'} text-white flex items-center justify-center`}>
-                            2
-                        </div>
-                        <p className={`my-auto ml-2 ${step >= 2 ? 'text-green-500' : 'text-gray-300'} `}>Bayar</p>
-                        
-                    </div>
-
-                    {/* Step 3 */}
-                    <div className={`flex items-center justify-center w-1/3`}>
-                        <div className={`h-1 w-2 md:w-16 ${step >= 3 ? 'bg-green-500' : 'bg-gray-300'}`}></div>
-                        <div className={`w-6 h-6 rounded-full border-2 ${step >= 3 ? 'bg-green-500' : 'bg-gray-300'} text-white flex items-center justify-center`}>
-                            3
-                        </div>
-                        <p className={`my-auto ml-2 ${step >= 3 ? 'text-green-500' : 'text-gray-300'} `}>Selesai</p>
-                    </div>
-            </div>
-                
-            
-
+            <Progresbar />
             <div className="w-full px-4 py-2  h-auto max-w-[1170px] mx-auto">
                   <div className="container w-full flex flex-col justify-evenly mx-auto gap-10 md:flex-row-reverse md:items-right">
                     <div className="md:w-1/4 bg-white p-4 shadow-xl rounded-lg h-auto md:h-1/3 border">
@@ -284,7 +254,7 @@ const Bayarmethod = () =>{
                                 <p className="text-left text-lg font-bold">Total</p>
                                 <p className="text-left text-lg font-bold text-green-500">Rp.{total.toLocaleString("id-ID")}k</p>
                             </div>
-                            <button onClick={handlebayarsekarang} type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 w-full rounded-lg my-3"> Bayar</button>
+                            <button onClick={handleBelisekarang} type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 w-full rounded-lg my-3"> Beli Sekarang</button>
                         </div>
 
                       </div>

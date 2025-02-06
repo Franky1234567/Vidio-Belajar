@@ -8,6 +8,7 @@ import RootLayout from "../Layouts/RootLayout";
 import Detail from "../Pages/detail";
 import Profile from "../Pages/Profile";
 import BayarMetode from "../Pages/MetodePembayaran";
+import BayarPage from "../Pages/Bayar";
 // export const router = createBrowserRouter([
 //     {
 //         path: "/",
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
     {
       path: "/metodepembayaran",
       element: <BayarMetode/>
+    },
+    {
+      path: "/Bayar",
+      element: <BayarPage/>
     },
     ],
   },
