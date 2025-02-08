@@ -54,7 +54,6 @@ const Bayarmethod = () =>{
             setewallet(ewalletName);
         }
     }
-
     const handlechangevisa = (visaName) =>{
         if (visa === visaName){
             setvisa(null);
@@ -63,7 +62,6 @@ const Bayarmethod = () =>{
             setvisa(visaName);
         }
     }
-
     const adminFee = 7; 
     const productPrice = selectedProduct.price; 
     const total = productPrice + adminFee;

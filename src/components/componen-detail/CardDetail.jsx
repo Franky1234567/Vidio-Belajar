@@ -30,11 +30,9 @@ const Carddetail = () => {
     };
     getdata();
   }, [id]);
-
   if (!carddetail) {
     return <div>Loading...</div>;
   }
-
   const card = carddetail;
 
 

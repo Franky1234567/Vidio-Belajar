@@ -9,6 +9,8 @@ import Detail from "../Pages/detail";
 import Profile from "../Pages/Profile";
 import BayarMetode from "../Pages/MetodePembayaran";
 import BayarPage from "../Pages/Bayar";
+import Berhasil from "../Pages/Berhasil";
+import Pesananpage from "../Pages/PesananPage";
 // export const router = createBrowserRouter([
 //     {
 //         path: "/",
@@ -61,12 +63,20 @@ export const router = createBrowserRouter([
       element: <Profile/>
     },
     {
+      path: "/Pesanan-saya",
+      element: <Pesananpage/>
+    },
+    {
       path: "/metodepembayaran",
       element: <BayarMetode/>
     },
     {
       path: "/Bayar",
       element: <BayarPage/>
+    },
+    {
+      path: "/berhasil",
+      element: <Berhasil/>
     },
     ],
   },

@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-// import { nextStep } from "../../Redux/progresbarslice";
+import { nextStep } from "../../Redux/progresbarslice";
 import { CiStickyNote } from "react-icons/ci";
 import { LuBookText } from "react-icons/lu";
 import { SlNote } from "react-icons/sl";
@@ -9,16 +9,46 @@ import { TbFileCertificate } from "react-icons/tb";
 import Progresbar from "../componen-Metodebayar/ProgresBar";
 import { IoIosArrowDown } from "react-icons/io";
 import Timer from "./Timer";
+import { useNavigate } from "react-router";
+import { fetchServicesProductAdd } from "../../Services/ServicesProduct";
+import { setProductBuy } from "../../Redux/productbuy";
 const Bayar = () => {
     const [openbank, setopenbank] = useState(false);
-    // const dispatch = useDispatch();
+    // const [time, settime] = useState(null);
+    const dispatch = useDispatch();
+    const Navigate = useNavigate();
     const selectedProduct = useSelector((state) => state.product.selectedProduct);
     const adminFee = 7; 
     const productPrice = selectedProduct.price; 
     const total = productPrice + adminFee;
-
     const handlebank = () => {
         setopenbank(!openbank);
+    };
+    const handlebayarsekarang = async () => {
+        try {
+            const response = await fetchServicesProductAdd(selectedProduct);
+            if (response) {
+                dispatch(nextStep());
+                Navigate("/berhasil");
+                alert("Pembayaran Berhasil");
+                
+                const currentDate = new Date();
+                const day = currentDate.toLocaleString('id-ID', { weekday: 'long' });
+                const date = currentDate.toLocaleDateString('id-ID');
+                const hours = currentDate.getHours();
+                const minutes = currentDate.getMinutes();
+                const seconds = currentDate.getSeconds();
+                const formattedTime = `${day}, ${date} ${hours}:${minutes}:${seconds}`;
+                // settime(formattedTime);
+                dispatch(setProductBuy({ product : selectedProduct, time :formattedTime}));
+                console.log(response);
+            }else{
+                console.log(response);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        
     };
     return (
         <>
@@ -100,9 +130,9 @@ const Bayar = () => {
                                     <p className="text-left text-lg font-bold">Total</p>
                                     <p className="text-left text-lg font-bold text-green-500">Rp.{total.toLocaleString("id-ID")}k</p>
                                 </div>
-                                <div className="flex justify-between my-5">
-                                    <button type="submit" className="bg-white border border-green-500 hover:bg-green-200 text-green-600 font-bold py-2 px-4 w-1/2 rounded-lg my-3 mx-2"> Ganti Metode Pembayaran</button>
-                                    <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 w-1/2 rounded-lg my-3 mx-2"> Bayar Sekarang</button>
+                                <div className="flex justify-between my-5 flex-col md:flex-row items-center ">
+                                    <button type="submit" className="bg-white border border-green-500 hover:bg-green-200 text-green-600 font-bold py-2 px-4 w-full md:w-1/2 rounded-lg my-3 mx-2"> Ganti Metode Pembayaran</button>
+                                    <button onClick={handlebayarsekarang} type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 w-full md:w-1/2 rounded-lg my-3 mx-2"> Bayar Sekarang</button>
                                 </div>
                             </div>
                         </div>

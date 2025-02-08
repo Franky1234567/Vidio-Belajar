@@ -26,7 +26,12 @@ const Logo = ({ avatar = '', textMenu = '' }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('datauser');
+    localStorage.removeItem('productbuy');
     navigate('/'); 
+  };
+
+  const backhome = () => {
+    navigate('/home'); 
   };
 
   const menuItems = [
@@ -41,7 +46,7 @@ const Logo = ({ avatar = '', textMenu = '' }) => {
       <div className="container mx-auto max-w-[1170px] ">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <img src={logo} alt="Logo" className="h-auto w-auto md:h-8 lg:h-10" />
+            <img src={logo} onClick={backhome} alt="Logo" className="h-auto w-auto md:h-8 lg:h-10" />
           </div>
 
           {/* Hamburger for mobile */}
