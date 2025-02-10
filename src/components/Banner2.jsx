@@ -20,10 +20,10 @@ const BannerWithSubscribe = ({ judul, paragf, inputPlaceholder, subscribeText })
                 <input
                   type="text"
                   placeholder={inputPlaceholder}
-                  className="w-2/3 p-3 rounded-lg  focus:outline-none my-3 md:my-auto"
+                  className="w-2/3 px-3 py-2 md:p-3 rounded-lg  focus:outline-none my-3 md:my-auto"
                 />
               </div>
-              <div className='w-2/3 md:w-auto mx-auto'>
+              <div className='w-2/3 md:w-auto mx-auto pr-1'>
                 <Button type="button">{subscribeText}</Button>
               </div>
             </div>

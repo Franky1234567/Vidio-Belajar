@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CiStickyNote } from "react-icons/ci";
@@ -175,7 +174,7 @@ const Bayarmethod = () =>{
                             </>
                         }
                         <div onClick={handleEwallet} className="border p-5 rounded-x my-2 rounded-lg hover:bg-orange-50 shadow-lg">
-                          <h1 className="text-left flex items-center justify-between">Transfer Ewallet <span><IoIosArrowDown /></span></h1>
+                            <h1 className="text-left flex items-center justify-between">Transfer Ewallet <span><IoIosArrowDown /></span></h1>
                         </div>
                         {openewallet &&
                             <>
@@ -218,7 +217,7 @@ const Bayarmethod = () =>{
                             </>
                         }
                         <div onClick={handleVisa} className="border p-5 rounded-x my-2 rounded-lg hover:bg-orange-50 shadow-lg">
-                          <h1 className="text-left flex items-center justify-between">Kartu Kredit/Visa <span><IoIosArrowDown /></span></h1>
+                            <h1 className="text-left flex items-center justify-between">Kartu Kredit/Visa <span><IoIosArrowDown /></span></h1>
                         </div>
                         {openVisa && 
                             <>

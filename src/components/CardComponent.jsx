@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import {Link } from 'react-router-dom';
 
 const Card = ({id, title,thumbnail,job,description,name,Rating,Ulasan,price,}) => {
-    const displayJob = job || "Nakuntansi";
+    const displayJob = job || "Akuntansi";
     return (
     <>
         <div className="w-80 px-3 bg-white py-5 drop-shadow-lg hover:scale-110 transition-transform delay-75 rounded-lg border">

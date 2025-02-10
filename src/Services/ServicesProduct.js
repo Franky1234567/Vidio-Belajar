@@ -1,8 +1,11 @@
 import axios from "axios";
 
+
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 export const fetchServicesProduct = async () => {
     try {
-        const response = await axios.get("https://dummyjson.com/products");
+        const response = await axios.get(`${BASE_URL}/products`);
         return response.data;
     } catch (error) {
         console.error("Error fetching services:", error);
@@ -13,7 +16,7 @@ export const fetchServicesProduct = async () => {
 export const fetchServicesProductAdd = async (productData) => {
     try {
         // Menggunakan axios.post untuk mengirim data produk
-        const response = await axios.post('https://dummyjson.com/products/add', {
+        const response = await axios.post(`${BASE_URL}/products/add`, {
             title: productData.title,
             description: productData.description,
             price: productData.price,
@@ -35,7 +38,7 @@ export const fetchServicesProductAdd = async (productData) => {
 //menhapus product by id
 export const deleteProduct = async (id) => {
     try {
-        const response = await axios.delete(`https://dummyjson.com/products/${id}`);
+        const response = await axios.delete(`${BASE_URL}/products/${id}`);
         return response.data;
     } catch (error) {
         console.error("Error deleting product:", error);
