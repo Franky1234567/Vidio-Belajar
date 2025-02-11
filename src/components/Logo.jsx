@@ -36,8 +36,8 @@ const Logo = ({ avatar = '', textMenu = '' }) => {
 
   const menuItems = [
     { label: 'Profile', path: '/Profile' },
-    { label: 'Kelas Saya', path: '/my-classes' },
-    { label: 'Pesanan Saya', path: '/my-orders' },
+    { label: 'Kelas Saya', path: '/Profile' },
+    { label: 'Pesanan Saya', path: '/Profile' },
     { label: 'Logout', action: handleLogout },
   ];
 

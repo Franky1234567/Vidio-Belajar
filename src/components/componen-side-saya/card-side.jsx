@@ -3,8 +3,10 @@ import { FaUser } from "react-icons/fa";
 // import { Link } from 'react-router-dom';
 import CardProfile from '../componen-profile/card-profile';
 import Pesanansaya from '../Pesanan saya/Pesanan-saya';
+import Kelassaya from '../Kelas-saya/Kelas-saya';
 import { MdClass } from "react-icons/md";
 import { FaCartShopping } from "react-icons/fa6";
+
 
 
 const CardSideSaya = () => {
@@ -22,7 +24,11 @@ const CardSideSaya = () => {
                     </>
                 ); 
             case 'kelas':
-                return <div>Konten Kelas Saya</div>; 
+                return (
+                    <>
+                        <Kelassaya/>
+                    </>
+                ); 
             case 'pesanan':
                 return (
                     <>
@@ -43,7 +49,7 @@ const CardSideSaya = () => {
 
     return (
         <div className='w-full mx-auto md:flex my-10'>
-            <div className=" w-full  md:w-1/5">
+            <div className=" w-full  md:w-2/5 lg:w-1/5">
                 <div className='w-full '>
                     <h1 className='font-bold w-full text-left ml-6'>{judul}</h1>
                     <p className='text-left ml-6'>{subjudul}</p>

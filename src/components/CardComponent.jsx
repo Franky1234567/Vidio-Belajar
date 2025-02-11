@@ -21,18 +21,20 @@ const Card = ({id, title,thumbnail,job,description,name,Rating,Ulasan,price,}) =
                     {title.substring(0, 20) + "..."}
                     </div>
                 </div>
-                <div className="hidden md:block text-left">{description.substring(0, 65) + "..."}</div>
+                <div className="hidden md:block text-left">
+                    {description.substring(0, 65) + "..."}
+                </div>
                 <div className="flex gap-3 px-1">
                     <div className="w-10 md:w-12 my-auto py-4  md:py-2">
-                    <img src="https://miro.medium.com/v2/resize:fit:2400/1*6_oHYdP-4Zvszbey6ZBw0w.jpeg" alt={name} className="rounded-lg" />
+                        <img src="https://miro.medium.com/v2/resize:fit:2400/1*6_oHYdP-4Zvszbey6ZBw0w.jpeg" alt={name} className="rounded-lg" />
                     </div>
                     <div className="text-sm text-left py-2 h-12 md:h-auto overflow-hidden">
-                    <span className="">john doe</span>
+                        <span className="">john doe</span>
                     <br />
-                    <span className="">{displayJob}</span>
+                        <span className="">{displayJob}</span>
                     </div>
                 </div>
-                </div>
+            </div>
             </div>
             <div className="flex gap-3 px-4 justify-between">
                 <div className="w-14 pt-4">
