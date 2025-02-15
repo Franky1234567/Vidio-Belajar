@@ -3,10 +3,14 @@ import Searchkelas from "./Searchkelas";
 import Kelascard from "./kelas-card";
 import { useEffect,useState } from "react";
 import { deleteProduct } from "../../Services/ServicesProduct";
+import { updateProduct } from "../../Services/ServicesProduct";
+import Alert from "../Alert/Alert";
 
 
 const Kelassaya = ()=>{
     const [productData, setProductData] = useState(null);
+    const [progres, setprogres] = useState(60);
+    const [alert,  setAlert] = useState(null);
         useEffect(() => {
             const databuy = localStorage.getItem("productbuy");
             if (databuy) {
@@ -28,34 +32,78 @@ const Kelassaya = ()=>{
             return <p>Produk sedang dimuat...</p>;
         }
     
+        // const handleDelete = async (id) => {
+        //     try {
+        //         console.log("Menghapus produk dengan ID:", id);
+        //         await deleteProduct(id);
+        //         console.log("Produk berhasil dihapus");
+        //         localStorage.removeItem("productbuy");
+        //         showAlert("Produk berhasil dihapus", "success");
+        //         console.log("Produk berhasil dihapus");
+                
+        //         setProductData(null);
+        //     } catch (error) {
+        //         console.error("Error deleting product:", error);
+        //         alert("Gagal menghapus produk");
+        //     }
+        // };
         const handleDelete = async (id) => {
             try {
                 console.log("Menghapus produk dengan ID:", id);
                 await deleteProduct(id);
+                console.log("Produk berhasil dihapus");
+                showAlert("Produk berhasil dihapus", "success");
+                setTimeout(() => {
+                    setProductData(null);
+                }, 2000); 
                 localStorage.removeItem("productbuy");
-                setProductData(null);
             } catch (error) {
                 console.error("Error deleting product:", error);
                 alert("Gagal menghapus produk");
             }
         };
+        const handleUpdate = async(id) => {
+            try {
+                const update = await updateProduct(id);
+                console.log(update);
+                setprogres(100)
+                showAlert("Progres berhasil diperbarui", "success");
+            }
+                catch(error){
+                console.error("Error updating product:", error);
+                alert("Gagal menghapus produk");
+            };
+        };
+
+        const showAlert = (message, type) => {
+            setAlert({ message, type });
+            setTimeout(() => {
+                setAlert(null); 
+            }, 3000);
+        };
+    
+         
     
     return (
         <>
             <main className="bg-white w-full mx-auto p-5 drop-shadow-lg overflow-hidden">
-
+                {alert && <Alert message={alert.message} type={alert.type} onClose={() => setAlert(null)} />}
                 <div className="flex justify-between flex-col md:flex-row md:flex-wrap md:items-center">
                     <Menukelas/>
                     <Searchkelas/>
                 </div>
                 <div>
                     <Kelascard 
+                        key={productData.id}
+                        id={productData.id}
+                        progress={progres}
+
                         productData={productData} 
                         onDelete={handleDelete}
+                        onUpdate={handleUpdate}
                     />
                 </div>
             </main>
-            
         </>
     )
 };

@@ -5,7 +5,7 @@ import ProgressKelas from "./progres";
 
 
 
-const Kelascard = ({productData,onDelete}) =>{
+const Kelascard = ({productData,onDelete, onUpdate,progress}) =>{
     const { title, images, id, description,displayJob ="Akuntansi" } = productData;
     return (
         <>
@@ -54,9 +54,7 @@ const Kelascard = ({productData,onDelete}) =>{
                         
                     </div>
                     <div className="  bg-green-50">
-                        <ProgressKelas progress={60} />
-                        {/* <h1 className="text-gray-500">Total Pembayaran</h1> */}
-                        {/* <h1 className="font-bold text-lg text-green-600">Rp.{price}</h1> */}
+                        <ProgressKelas progress={progress} onUpdate={onUpdate} productData={productData} />
                     </div>
                 </div>
             </main>
@@ -67,6 +65,8 @@ const Kelascard = ({productData,onDelete}) =>{
 Kelascard.propTypes = {
     productData: porptypes.object.isRequired,
     onDelete: porptypes.func.isRequired,
+    onUpdate: porptypes.func.isRequired,
+    progress: porptypes.number
 };
 
 

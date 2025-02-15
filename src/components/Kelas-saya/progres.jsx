@@ -1,6 +1,14 @@
 import proptypes from "prop-types";
 
-const ProgressKelas = ({ progress = 100 }) => {
+// import { useState,useEffect } from "react";
+const ProgressKelas = ( {productData, progress, onUpdate} ) => {
+ const {id } = productData
+      
+  // const handleDownload = async(id) => {
+  //   const update = await updateProduct(id);
+  //   console.log(update);
+  // };
+
   return (
     <div className="p-5 rounded-lg shadow-md flex items-center justify-between w-full flex-col md:flex-row gap-5">
       <div className="flex flex-col">
@@ -13,7 +21,7 @@ const ProgressKelas = ({ progress = 100 }) => {
         </div>
       </div>
       <div className="flex space-x-4">
-        <button className="border border-green-500 text-green-500 py-2 px-4 rounded-md hover:bg-green-100">
+        <button onClick={() => onUpdate(id)} className="border border-green-500 text-green-500 py-2 px-4 rounded-md hover:bg-green-100">
           Unduh Sertifikat
         </button>
         <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">
@@ -26,6 +34,8 @@ const ProgressKelas = ({ progress = 100 }) => {
 
 ProgressKelas.propTypes = {
   progress: proptypes.number,
+  productData: proptypes.object,
+  onUpdate: proptypes.func,
 };
 
 export default ProgressKelas;

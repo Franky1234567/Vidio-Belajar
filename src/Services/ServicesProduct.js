@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 export const fetchServicesProduct = async () => {
     try {
@@ -34,7 +32,6 @@ export const fetchServicesProductAdd = async (productData) => {
     }
 };
 
-
 //menhapus product by id
 export const deleteProduct = async (id) => {
     try {
@@ -42,6 +39,17 @@ export const deleteProduct = async (id) => {
         return response.data;
     } catch (error) {
         console.error("Error deleting product:", error);
+        return null;
+    }
+};
+
+//untuk update data ke api
+export const updateProduct = async (id) => {
+    try {
+        const response = await axios.put(`${BASE_URL}/products/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating product:", error);
         return null;
     }
 };

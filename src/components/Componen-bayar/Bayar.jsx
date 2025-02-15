@@ -12,8 +12,10 @@ import Timer from "./Timer";
 import { useNavigate } from "react-router";
 import { fetchServicesProductAdd } from "../../Services/ServicesProduct";
 import { setProductBuy } from "../../Redux/productbuy";
+import Alert from "../Alert/Alert";
 const Bayar = () => {
     const [openbank, setopenbank] = useState(false);
+    const [alert, setAlert] = useState(null);
     // const [time, settime] = useState(null);
     const dispatch = useDispatch();
     const Navigate = useNavigate();
@@ -29,9 +31,10 @@ const Bayar = () => {
             const response = await fetchServicesProductAdd(selectedProduct);
             if (response) {
                 dispatch(nextStep());
-                Navigate("/berhasil");
-                alert("Pembayaran Berhasil");
-                
+                setTimeout(() => {
+                    Navigate("/berhasil");
+                },2000 );
+                showAlert("Pembayaran Berhasil", "success");
                 const currentDate = new Date();
                 const day = currentDate.toLocaleString('id-ID', { weekday: 'long' });
                 const date = currentDate.toLocaleDateString('id-ID');
@@ -39,7 +42,6 @@ const Bayar = () => {
                 const minutes = currentDate.getMinutes();
                 const seconds = currentDate.getSeconds();
                 const formattedTime = `${day}, ${date} ${hours}:${minutes}:${seconds}`;
-                // settime(formattedTime);
                 dispatch(setProductBuy({ product : selectedProduct, time :formattedTime}));
                 console.log(response);
             }else{
@@ -50,12 +52,19 @@ const Bayar = () => {
         }
         
     };
+    const showAlert = (message, type) => {
+        setAlert({ message, type });
+        setTimeout(() => {
+            setAlert(null); 
+        }, 3000);
+    };
     return (
         <>
             <Timer/>
             <Progresbar/>
             <div className="w-full px-4 py-2  h-auto max-w-[1170px] mx-auto">
                 <div className="container w-full flex flex-col justify-evenly mx-auto gap-10 md:flex-row-reverse md:items-right">
+                    {alert && <Alert message={alert.message} type={alert.type} onClose={() => setAlert(null)} />}
                     <div className="md:w-1/4 bg-white p-4 shadow-xl rounded-lg h-auto md:h-1/3 border">
                      <h1 className="font-bold text-2xl ">{selectedProduct.title}</h1>
                       <div className="flex md:flex-col lg:flex-row mx-auto justify-between my-4">
