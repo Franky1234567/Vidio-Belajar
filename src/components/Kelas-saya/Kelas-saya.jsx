@@ -5,6 +5,7 @@ import { useEffect,useState } from "react";
 import { deleteProduct } from "../../Services/ServicesProduct";
 import { updateProduct } from "../../Services/ServicesProduct";
 import Alert from "../Alert/Alert";
+import { HashLoader } from "react-spinners";
 
 
 const Kelassaya = ()=>{
@@ -29,7 +30,12 @@ const Kelassaya = ()=>{
         }, []);
     
         if (!productData) {
-            return <p>Produk sedang dimuat...</p>;
+            return (
+                <>
+                    <HashLoader color="#ffa30d" className="m-auto justify-center" /> ;
+                    <p className="text-orange-300">Product Tidak Ditemukan</p>
+                </>
+            )
         }
     
         // const handleDelete = async (id) => {
@@ -82,7 +88,6 @@ const Kelassaya = ()=>{
             }, 3000);
         };
     
-         
     
     return (
         <>
@@ -97,7 +102,6 @@ const Kelassaya = ()=>{
                         key={productData.id}
                         id={productData.id}
                         progress={progres}
-
                         productData={productData} 
                         onDelete={handleDelete}
                         onUpdate={handleUpdate}

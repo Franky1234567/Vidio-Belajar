@@ -128,6 +128,7 @@ import PesananCard from "./Pesanancard";
 import MenuPesanan from "./Menupesanan";
 import SearchAndSort from "./SearchAndSort";
 import { deleteProduct } from "../../Services/ServicesProduct";
+import { HashLoader } from "react-spinners";
 
 const Pesanansaya = () => {
     const [productData, setProductData] = useState(null);
@@ -154,7 +155,12 @@ const Pesanansaya = () => {
     }, []);
 
     if (!productData) {
-        return <p>Produk sedang dimuat...</p>;
+        return (
+            <>
+                <HashLoader color="#ffa30d" className="m-auto justify-center" /> ;
+                <p className="text-orange-300">Product Tidak Ditemukan</p>
+            </>
+        )
     }
 
     const handleDelete = async (id) => {
