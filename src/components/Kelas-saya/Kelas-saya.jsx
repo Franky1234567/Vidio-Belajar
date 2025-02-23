@@ -4,30 +4,28 @@ import Kelascard from "./kelas-card";
 import { useEffect,useState } from "react";
 import { deleteProduct } from "../../Services/ServicesProduct";
 import { updateProduct } from "../../Services/ServicesProduct";
+import {useSelector,useDispatch} from 'react-redux';
+import { updateProductProgress } from "../../Redux/productbuy";
 import Alert from "../Alert/Alert";
 import { HashLoader } from "react-spinners";
 
 
 const Kelassaya = ()=>{
     const [productData, setProductData] = useState(null);
-    const [progres, setprogres] = useState(60);
+    // const [progres, setprogres] = useState(60);
     const [alert,  setAlert] = useState(null);
-        useEffect(() => {
-            const databuy = localStorage.getItem("productbuy");
-            if (databuy) {
-                try {
-                    const parsedData = JSON.parse(databuy);
-                    if (parsedData.product) {
-                        setProductData(parsedData.product);
-                    }
-                } catch (error) {
-                    console.error("Error parsing product data:", error);
-                    alert("Gagal memuat data produk");
-                }
-            } else {
-                console.log("Data di localStorage kosong");
-            }
-        }, []);
+    const product = useSelector((state) => state.productbuy.productbuy);
+    const dispatch = useDispatch();
+    console.log(product, "product");
+    useEffect(() => {
+        if (product && product.length > 0) {
+            console.log(product, "data dari Redux");
+            setProductData(product); // Menyimpan data ke state
+        } else {
+            console.log("No product data available");
+        }
+    }, [product]);
+        
     
         if (!productData) {
             return (
@@ -38,21 +36,6 @@ const Kelassaya = ()=>{
             )
         }
     
-        // const handleDelete = async (id) => {
-        //     try {
-        //         console.log("Menghapus produk dengan ID:", id);
-        //         await deleteProduct(id);
-        //         console.log("Produk berhasil dihapus");
-        //         localStorage.removeItem("productbuy");
-        //         showAlert("Produk berhasil dihapus", "success");
-        //         console.log("Produk berhasil dihapus");
-                
-        //         setProductData(null);
-        //     } catch (error) {
-        //         console.error("Error deleting product:", error);
-        //         alert("Gagal menghapus produk");
-        //     }
-        // };
         const handleDelete = async (id) => {
             try {
                 console.log("Menghapus produk dengan ID:", id);
@@ -62,25 +45,31 @@ const Kelassaya = ()=>{
                 setTimeout(() => {
                     setProductData(null);
                 }, 2000); 
-                localStorage.removeItem("productbuy");
+                // localStorage.removeItem("productbuy");
             } catch (error) {
                 console.error("Error deleting product:", error);
                 alert("Gagal menghapus produk");
             }
         };
-        const handleUpdate = async(id) => {
+        
+        const handleUpdate = async (id) => {
             try {
+                console.log("Mengupdate produk dengan ID:", id);
                 const update = await updateProduct(id);
                 console.log(update);
-                setprogres(100)
+                const newProgress = 100; 
+                
+                // Dispatch aksi untuk memperbarui progress produk berdasarkan id
+                dispatch(updateProductProgress({ id, progress: newProgress }));
+        
+                console.log("Progress updated for product ID:", id);
                 showAlert("Progres berhasil diperbarui", "success");
-            }
-                catch(error){
+            } catch (error) {
                 console.error("Error updating product:", error);
-                alert("Gagal menghapus produk");
-            };
+                alert("Gagal mengupdate produk");
+            }
         };
-
+        
         const showAlert = (message, type) => {
             setAlert({ message, type });
             setTimeout(() => {
@@ -98,14 +87,18 @@ const Kelassaya = ()=>{
                     <Searchkelas/>
                 </div>
                 <div>
-                    <Kelascard 
-                        key={productData.id}
-                        id={productData.id}
-                        progress={progres}
-                        productData={productData} 
-                        onDelete={handleDelete}
-                        onUpdate={handleUpdate}
-                    />
+                    {productData.map((productData) => (
+                        <Kelascard 
+                            key={productData.id}
+                            id={productData.id}
+                            progress={productData.progress}
+                            productData={productData} 
+                            onDelete={handleDelete}
+                            onUpdate={handleUpdate}
+                        />
+                        
+                    ))}
+                    
                 </div>
             </main>
         </>

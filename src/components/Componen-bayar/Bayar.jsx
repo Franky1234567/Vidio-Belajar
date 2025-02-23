@@ -21,7 +21,7 @@ const Bayar = () => {
     const Navigate = useNavigate();
     const selectedProduct = useSelector((state) => state.product.selectedProduct);
     const adminFee = 7; 
-    const productPrice = selectedProduct.price; 
+    const productPrice = selectedProduct?.price; 
     const total = productPrice + adminFee;
     const handlebank = () => {
         setopenbank(!openbank);
@@ -43,7 +43,8 @@ const Bayar = () => {
                 const seconds = currentDate.getSeconds();
                 const formattedTime = `${day}, ${date} ${hours}:${minutes}:${seconds}`;
                 dispatch(setProductBuy({ product : selectedProduct, time :formattedTime}));
-                console.log(response);
+                console.log(response , "data dari bayar");
+                console.log(selectedProduct, "data dari bayar");
             }else{
                 console.log(response);
             }
@@ -52,6 +53,8 @@ const Bayar = () => {
         }
         
     };
+    
+    
     const showAlert = (message, type) => {
         setAlert({ message, type });
         setTimeout(() => {

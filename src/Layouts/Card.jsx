@@ -62,23 +62,29 @@ import { HashLoader } from "react-spinners";
 
 const CardList = () => {
     const dispatch = useDispatch();
-    const { allproduct, loading, error } = useSelector(
-        (state) => state.allproduct
-    );
+    const { allproduct, loading, error } = useSelector((state) => state.allproduct);
+    const productbuy = useSelector((state) => state.productbuy.productbuy);
     useEffect(() => {
         dispatch(fetchAllProducts());
-        console.log(allproduct);
     }, [dispatch]);
 
     if (loading) return <HashLoader color="#ffa30d" className="m-auto" />;
     if (error) return <p>Error: {error}</p>;
 
+
+
+
+    const filteredProducts = allproduct.filter(product => {
+        // return !productbuy || productbuy.id !== product.id;
+        return !productbuy.some((item) => item.id === product.id);
+    });
+    console.log(filteredProducts);
     return (
         <div className="w-full h-auto max-w-[1170px] mx-auto">
         <div className="container w-full mx-auto">
             <div className="flex flex-row items-center justify-center flex-wrap gap-5 py-5">
-            {allproduct.length > 0 &&
-                allproduct.slice(0, 9).map((data) => (
+            {filteredProducts.length > 0 &&
+                filteredProducts.slice(0, 9).map((data) => (
                     <Card
                         key={data.id}
                         id={data.id}

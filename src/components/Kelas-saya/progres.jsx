@@ -1,13 +1,9 @@
 import proptypes from "prop-types";
 
 // import { useState,useEffect } from "react";
-const ProgressKelas = ( {productData, progress, onUpdate} ) => {
+const ProgressKelas = ( {productData, progress = 60, onUpdate} ) => {
  const {id } = productData
       
-  // const handleDownload = async(id) => {
-  //   const update = await updateProduct(id);
-  //   console.log(update);
-  // };
 
   return (
     <div className="p-5 rounded-lg shadow-md flex items-center justify-between w-full flex-col md:flex-row gap-5">

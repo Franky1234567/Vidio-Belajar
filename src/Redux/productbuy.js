@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    productbuy: null,
-    time: null,
+    productbuy: [],
+    time: [],
 };
 
 const productbuySlice = createSlice({
@@ -10,11 +10,36 @@ const productbuySlice = createSlice({
     initialState,
     reducers: {
         setProductBuy: (state, action) => {
-            localStorage.setItem("productbuy", JSON.stringify(action.payload));
-            state.productbuy = action.payload;
-            state.time = action.payload.time;
+            const { product, time } = action.payload;
+            const isProductExist = state.productbuy.some((item) => item.id === product.id);
+            if (!isProductExist) {
+                state.productbuy.push(product); 
+                // state.time.push({ id: product.id, time: time });//ini jga belum fix
+            }
+            // else{ //inibelum fix
+            //     const productIndex = state.time.findIndex((item) => item.id === product.id);
+            //     if (productIndex !== -1) {
+            //         state.time[productIndex] = { id: product.id, time: time }; 
+            //     }
+            // }
+
+            state.time = time; 
         },
+        updateProductProgress: (state, action) => {
+            const { id, progress } = action.payload;
+            const product = state.productbuy.find((item) => item.id === id);
+            if (product) {
+                product.progress = progress; 
+            }
+        },
+        
+        removeProductFromBuy: (state, action) => {
+            const idToRemove = action.payload;
+            state.productbuy = state.productbuy.filter((product) => product.id !== idToRemove);
+        },
+
     },
 });
-export const { setProductBuy } = productbuySlice.actions;
+
+export const { setProductBuy, updateProductProgress, removeProductFromBuy } = productbuySlice.actions;
 export default productbuySlice.reducer;

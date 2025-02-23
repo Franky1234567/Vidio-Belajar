@@ -5,8 +5,10 @@ import ProgressKelas from "./progres";
 
 
 
-const Kelascard = ({productData,onDelete, onUpdate,progress}) =>{
+const Kelascard = ({productData,onDelete, onUpdate,}) =>{
     const { title, images, id, description,displayJob ="Akuntansi" } = productData;
+    const updatedProgress = productData.progress;
+    console.log(productData, "productData");
     return (
         <>
             <main>
@@ -33,7 +35,7 @@ const Kelascard = ({productData,onDelete, onUpdate,progress}) =>{
                             </div>
                             <div className="flex flex-col text-left ml-2">
                                 <h2 className="font-bold">{title}</h2>
-                                <p className="hidden md:block">{description.substring(0, 100)}</p>
+                                <p className="hidden md:block">{description}</p>
                                 <div className="flex gap-3 px-1">
                                     <div className="w-10 md:w-10 my-auto py-4  md:py-2">
                                         <img src="https://miro.medium.com/v2/resize:fit:2400/1*6_oHYdP-4Zvszbey6ZBw0w.jpeg" alt='' className="rounded-lg" />
@@ -54,7 +56,7 @@ const Kelascard = ({productData,onDelete, onUpdate,progress}) =>{
                         
                     </div>
                     <div className="  bg-green-50">
-                        <ProgressKelas progress={progress} onUpdate={onUpdate} productData={productData} />
+                        <ProgressKelas progress={updatedProgress} onUpdate={onUpdate} productData={productData} />
                     </div>
                 </div>
             </main>
