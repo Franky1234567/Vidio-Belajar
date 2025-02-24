@@ -6,6 +6,7 @@ import { deleteProduct } from "../../Services/ServicesProduct";
 import { updateProduct } from "../../Services/ServicesProduct";
 import {useSelector,useDispatch} from 'react-redux';
 import { updateProductProgress } from "../../Redux/productbuy";
+import {removeProductFromBuy} from '../../Redux/productbuy';
 import Alert from "../Alert/Alert";
 import { HashLoader } from "react-spinners";
 
@@ -36,22 +37,33 @@ const Kelassaya = ()=>{
             )
         }
     
+        // const handleDelete = async (id) => {
+        //     try {
+        //         console.log("Menghapus produk dengan ID:", id);
+        //         await deleteProduct(id);
+        //         console.log("Produk berhasil dihapus");
+        //         showAlert("Produk berhasil dihapus", "success");
+        //         setTimeout(() => {
+        //             setProductData(null);
+        //         }, 2000); 
+        //         // localStorage.removeItem("productbuy");
+        //     } catch (error) {
+        //         console.error("Error deleting product:", error);
+        //         alert("Gagal menghapus produk");
+        //     }
+        // };
         const handleDelete = async (id) => {
             try {
                 console.log("Menghapus produk dengan ID:", id);
                 await deleteProduct(id);
                 console.log("Produk berhasil dihapus");
-                showAlert("Produk berhasil dihapus", "success");
-                setTimeout(() => {
-                    setProductData(null);
-                }, 2000); 
-                // localStorage.removeItem("productbuy");
+                dispatch(removeProductFromBuy(id)); 
+                setProductData((prevData) => prevData.filter((product) => product.id !== id));
             } catch (error) {
                 console.error("Error deleting product:", error);
                 alert("Gagal menghapus produk");
             }
-        };
-        
+        };        
         const handleUpdate = async (id) => {
             try {
                 console.log("Mengupdate produk dengan ID:", id);

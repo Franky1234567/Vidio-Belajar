@@ -75,7 +75,6 @@ const CardList = () => {
 
 
     const filteredProducts = allproduct.filter(product => {
-        // return !productbuy || productbuy.id !== product.id;
         return !productbuy.some((item) => item.id === product.id);
     });
     console.log(filteredProducts);
