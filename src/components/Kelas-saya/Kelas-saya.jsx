@@ -21,7 +21,7 @@ const Kelassaya = ()=>{
     useEffect(() => {
         if (product && product.length > 0) {
             console.log(product, "data dari Redux");
-            setProductData(product); // Menyimpan data ke state
+            setProductData(product); 
         } else {
             console.log("No product data available");
         }
@@ -37,21 +37,6 @@ const Kelassaya = ()=>{
             )
         }
     
-        // const handleDelete = async (id) => {
-        //     try {
-        //         console.log("Menghapus produk dengan ID:", id);
-        //         await deleteProduct(id);
-        //         console.log("Produk berhasil dihapus");
-        //         showAlert("Produk berhasil dihapus", "success");
-        //         setTimeout(() => {
-        //             setProductData(null);
-        //         }, 2000); 
-        //         // localStorage.removeItem("productbuy");
-        //     } catch (error) {
-        //         console.error("Error deleting product:", error);
-        //         alert("Gagal menghapus produk");
-        //     }
-        // };
         const handleDelete = async (id) => {
             try {
                 console.log("Menghapus produk dengan ID:", id);
